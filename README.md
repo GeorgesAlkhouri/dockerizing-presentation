@@ -5,7 +5,7 @@ Working repository for the final presentation for the [Dockerizing Linked Data p
 ## Todo's
 
 * ~~Introduction/Motivation~~
-* Introduction Professorenkatalog/Technical infrastructure
+* ~~Introduction Professorenkatalog/Technical infrastructure~~
 * ~~What is Docker?~~
 * Presentation Virtuoso Docker (Dockerfile, etc ...)
 * Demo Virtuoso Docker
