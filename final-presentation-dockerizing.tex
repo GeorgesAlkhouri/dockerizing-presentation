@@ -1,7 +1,7 @@
 \documentclass{beamer} %[12pt,handout]
 
-\usepackage[german, ngerman]{babel}
-\selectlanguage{ngerman}
+\usepackage[english]{babel}
+\selectlanguage{english}
 \usepackage[utf8]{inputenc}
 \usepackage{hyperref}
 \usepackage{url}
@@ -59,8 +59,13 @@
 \setbeamercolor{bibliography entry title}{fg=black}
 \setbeamercolor{bibliography entry location}{fg=black}
 \setbeamercolor{bibliography item}{fg=black}
+\setbeamercolor{caption name}{fg=black}
 
 \setbeamertemplate{itemize items}[circle]
+%\setbeamertemplate{caption}{
+%\begin{beamercolorbox}[wd=.5\paperwidth, sep=.2ex]{block body}\insertcaption
+%\end{beamercolorbox}
+%}
 
 \addtobeamertemplate{frametitle}{\vskip+5.0ex}
 
@@ -102,6 +107,50 @@ To run and maintain a local knowledge base environment is a complex task requiri
 \vspace{\baselineskip}
 
 \centerline{\textbf{Dockerizing Linked Data}}
+}
+
+\frame {
+\frametitle{Usage Example: Professorenkatalog}
+
+The Catalogus Professorum Lipsiensium
+
+\begin{itemize}
+
+\item Knowledge base of professors at the Leipzig University
+\item Includes records from 1409 to presence
+\item Comprises over 14, 000 entities
+\item Many interlinked connections in the LOD Cloud
+\item Curated by \textbf{historical researchers} and \textbf{interested citizen scientists}
+
+\end{itemize}
+}
+
+\frame {
+\frametitle{Usage Example: Professorenkatalog}
+\framesubtitle{Infrastructure}
+
+Professorenkatalogs infrastructure consists of several web applications (Presentation, Storage, Backup, ... )
+
+}
+
+\frame{
+
+\begin{figure}
+\includegraphics[scale=0.32]{CPL.png}
+\caption{Architecture of Professorenkatalog\cite[p. 6]{dld-paper}}
+\end{figure}
+
+}
+
+\frame {
+\frametitle{References}
+
+\begin{thebibliography}{Knowledge Base Shipping to the Linked Open Data Cloud}
+	\setbeamertemplate{bibliography item}[text]      		\bibitem[1]{dld-paper}        	Knowledge Base Shipping to the Linked Open Data Cloud
+ 		\newblock {\em Natanael Arndt, Markus Ackermann, Martin Brümmer, Thomas Riechert}
+		\newblock{Jul. 2015}
+\end{thebibliography}
+
 }
 
 \end{document}
