@@ -10,11 +10,23 @@
 \usepackage{listings}
 \usepackage{xcolor}
 \usepackage{graphicx}
+\usepackage{listings}
 
 \colorlet{punct}{red!60!black}
 \definecolor{background}{HTML}{EEEEEE}
 \definecolor{delim}{RGB}{20,105,176}
 \colorlet{numb}{magenta!60!black}
+
+\lstset{basicstyle=\ttfamily,
+  showstringspaces=false,
+  commentstyle=\color{red},
+  keywordstyle=\color{blue},
+  breaklines=true,
+  postbreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\color{black}\hookrightarrow\space}},
+  morekeywords={run, p, e, v, name,d},
+  xleftmargin=-30pt,
+  xrightmargin=0pt,
+}
 
 \lstdefinelanguage{json}{
     basicstyle=\normalfont\ttfamily,
@@ -136,14 +148,114 @@ Professorenkatalogs infrastructure consists of several web applications (Present
 \frame{
 
 \begin{figure}
-\includegraphics[scale=0.32]{CPL.png}
-\caption{Architecture of Professorenkatalog\cite[p. 6]{dld-paper}}
+	\includegraphics[scale=0.32]{CPL.png}
+	\caption{Architecture of Professorenkatalog\cite[p. 6]{dld-paper}}
 \end{figure}
 
 }
 
+\frame{
+
+	\frametitle{Simple Docker Demo}
+	\framesubtitle{Virtuoso Container}
+	
+	Virtuoso is a multi model data server including SPARQL RDF based Graph Storage
+	\vspace{\baselineskip}
+	
+	Dockerizing project is hosting an own virtuoso image at:
+	
+	\begin{center}
+		\url{https://registry.hub.docker.com/u/aksw/dld-store-virtuoso7/}
+	\end{center}
+	
+}
+
+\setbeamertemplate{frametitle continuation}{}
+\frame[allowframebreaks]{
+
+	\frametitle{Simple Docker Demo}
+	\framesubtitle{Run Container}
+
+\begin{center}
+
+	Start and run a docker container through:
+
+	\begin{lstlisting}
+	
+	docker run -d 
+	           --name="virtuoso" 
+	           -p <host port>:8890 //SPARQL
+	           -p <host port>:1111 //ODBC
+                   -e PWDDBA="super secret" 
+                   -v <host virtuoso directory>:/var/lib/virtuoso/db
+                    aksw/dld-store-virtuoso7
+
+	\end{lstlisting}
+
+\end{center}
+}
+
+\setbeamercolor{description item}{fg=blue}
+\setbeamercolor{itemize item}{fg=black}
+
+\frame{
+	
+	\frametitle{Simple Docker Demo}
+	\framesubtitle{What is going on?}
+	
+	\begin{description}
+	
+	\item[run] Run a command in a new container
+	\item[-d] Run container in background and print container ID
+	\item[- -name] Assign a name to the container
+	\item[-p] Publish a container's port to the host
+	\item[-e] Set environment variables into container
+	\item[-v] Bind mount a volume
+	
+	\end{description}
+	
+	"aksw/dld-store-virtuoso7" is the image name, local or on docker hub
+
+}
+
+\frame{
+
+	\frametitle{Simple Docker Demo}
+	\framesubtitle{Setup Virtuoso}
+
+	The virtuoso.ini file is injected into the container through \colorbox{background}{\lstinline{-v}} which mounts the datebase folder from the host system into the container
+	\vspace{\baselineskip}
+	
+	If not specified the container provides a fallback file
+
+}
+
+
+\frame{
+
+	\frametitle{Simple Docker Demo}
+	\framesubtitle{Access Virtuoso Container}
+
+	After \colorbox{background}{\lstinline{docker run}} docker provides an access to the container through the exposed port (\colorbox{background}{\lstinline{-p 8890:8890}}) on localhost
+	
+	\begin{center}
+		\url{http://localhost:8890/sparql}
+	\end{center}
+
+}
+
+\frame{
+
+	\begin{figure}
+	
+	\includegraphics[scale=0.25]{virtuoso-sparql.png}
+	\caption{Virtuoso SPARQL Endpoint provided by a docker container}
+	
+	\end{figure}
+}
+
 \frame {
-\frametitle{References}
+	\frametitle{References}
 
 \begin{thebibliography}{Knowledge Base Shipping to the Linked Open Data Cloud}
 	\setbeamertemplate{bibliography item}[text]      		\bibitem[1]{dld-paper}        	Knowledge Base Shipping to the Linked Open Data Cloud
