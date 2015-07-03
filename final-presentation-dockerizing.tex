@@ -23,7 +23,7 @@
   keywordstyle=\color{blue},
   breaklines=true,
   postbreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\color{black}\hookrightarrow\space}},
-  morekeywords={run, p, e, v, name,d},
+  morekeywords={run, p, e, v, name,d, FROM, MAINTAINER, LABEL, ENV, RUN, ADD, EXPOSE, ENV, VOLUME, WORKDIR, CMD},
   xleftmargin=-30pt,
   xrightmargin=0pt,
 }
@@ -203,8 +203,44 @@ Professorenkatalogs infrastructure consists of several web applications (Present
 }
 
 \frame{
-	\frametitle{A Docker example: Virtuoso 7 Docker}
-	Virtuoso is a triple store for managing RDF data. (hier kommen noch grundlagen ein Ausschnitt aus dem Dockerfile) 
+	\frametitle{Docker example: Virtuoso 7}
+	Virtuoso is a SQL-ORDBMS and Web Application Server (Universal Server). The Server provides SQL, XML, RDF data mangement. Access to the Triple Store is available in many ways, for example via SPARQL, ODBC, JDBC. %(Quelle: https://www.w3.org/2001/sw/wiki/OpenLink_Virtuoso)
+}
+
+\setbeamertemplate{frametitle continuation}{}
+\frame[allowframebreaks]{
+	\frametitle{Docker example: Virtuoso 7}
+	\framesubtitle{Dockerfile}
+	\begin{tiny}
+	\begin{lstlisting}
+	FROM debian:jessie
+	MAINTAINER Natanael Arndt ...
+	LABEL org.aksw.dld=true ...
+	# Let the conatiner know that there is no tty
+	ENV DEBIAN_FRONTEND noninteractive
+	RUN apt-get update
+	# install some basic packages
+	RUN apt-get install -y libldap-2.4-2 libssl1.0.0 unixodbc
+	ADD virtuoso-minimal_7.2_all.deb \
+	virtuoso-opensource-7-bin_7.2_amd64.deb \
+	libvirtodbc0_7.2_amd64.deb
+	RUN dpkg -i virtuoso-minimal_7.2_all.deb \
+	virtuoso-opensource-7-bin_7.2_amd64.deb \
+	libvirtodbc0_7.2_amd64.deb
+	ADD virtuoso.ini.dist /
+	ADD run.sh /
+	# expose the ODBC and management ports to the outer world
+	EXPOSE 1111
+	EXPOSE 8890
+	ENV PWDDBA="dba"
+	VOLUME "/var/lib/virtuoso/db"
+	VOLUME "/import_store"
+	WORKDIR /var/lib/virtuoso/db
+	
+	CMD ["/run.sh"] 
+	\end{lstlisting}
+	\end{tiny}
+	
 }
 
 \frame{
