@@ -155,6 +155,59 @@ Professorenkatalogs infrastructure consists of several web applications (Present
 }
 
 \frame{
+	\frametitle{What is Docker?}
+	Docker is a free virtualisation technology, which is based on Linux Containers.
+	\begin{figure}
+		\includegraphics[scale=0.4]{vm-vs-docker.png}
+		\caption{Virtual Machines vs Docker}
+		%Quelle: : http://www.theregister.co.uk/2015/01/07/asigra_dockerises_cloud_backup/
+	\end{figure}
+}
+
+\frame{
+	\frametitle{What is Docker?}
+	Introduction
+	\begin{itemize}
+		\item Docker consists of two components: \textbf{Docker Engine, Docker Hub}
+		\item \textbf{Docker Engine} is managing the containers and deploys the applications on them 
+		\item \textbf{Docker Hub} is a Docker repository to ship and run your applications anywhere
+		\item 
+	\end{itemize}
+}
+
+\frame{
+	\frametitle{What is Docker?}
+	\framesubtitle{Usage}
+	\begin{enumerate}
+		\item Install Docker.
+		\item Pull (and modify) a Docker image from the Docker Hub or create a Dockerfile.
+		\item Run a container by using the Docker image.
+	\end{enumerate}
+}
+
+\setbeamercolor{description item}{fg=blue}
+\setbeamercolor{itemize item}{fg=black}
+
+\frame{
+	\frametitle{What is Docker?}
+	\framesubtitle{Basic commands}
+	docker ...
+	\begin{description}
+	\item[build] \textit{dockerfile}: build an image from a Dockerfile
+	\item[run] \textit{image}: run a command in a new container
+	\item[start] \textit{name|id}: start a stopped container
+	\item[stop] \textit{name|id}: stop a running container
+	\item[rm] \textit{name|id}: remove a container
+	\item[rmi] \textit{name|id}: remove an image
+	\end{description}
+}
+
+\frame{
+	\frametitle{A Docker example: Virtuoso 7 Docker}
+	Virtuoso is a triple store for managing RDF data. (hier kommen noch grundlagen ein Ausschnitt aus dem Dockerfile) 
+}
+
+\frame{
 
 	\frametitle{Simple Docker Demo}
 	\framesubtitle{Virtuoso Container}
@@ -194,9 +247,6 @@ Professorenkatalogs infrastructure consists of several web applications (Present
 
 \end{center}
 }
-
-\setbeamercolor{description item}{fg=blue}
-\setbeamercolor{itemize item}{fg=black}
 
 \frame{
 	
@@ -258,7 +308,9 @@ Professorenkatalogs infrastructure consists of several web applications (Present
 	\frametitle{References}
 
 \begin{thebibliography}{Knowledge Base Shipping to the Linked Open Data Cloud}
-	\setbeamertemplate{bibliography item}[text]      		\bibitem[1]{dld-paper}        	Knowledge Base Shipping to the Linked Open Data Cloud
+	\setbeamertemplate{bibliography item}[text]
+      		\bibitem[1]{dld-paper}
+        	Knowledge Base Shipping to the Linked Open Data Cloud
  		\newblock {\em Natanael Arndt, Markus Ackermann, Martin Brümmer, Thomas Riechert}
 		\newblock{Jul. 2015}
 \end{thebibliography}
