@@ -23,7 +23,7 @@
   keywordstyle=\color{blue},
   breaklines=true,
   postbreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\color{black}\hookrightarrow\space}},
-  morekeywords={run, p, e, v, name,d, FROM, MAINTAINER, LABEL, ENV, RUN, ADD, EXPOSE, ENV, VOLUME, WORKDIR, CMD},
+  morekeywords={run, p, e, v, name,d, FROM, MAINTAINER, LABEL, ENV, RUN, ADD, EXPOSE, ENV, VOLUME, WORKDIR, CMD, up, link, build,volumes_from},
   xleftmargin=-30pt,
   xrightmargin=0pt,
 }
@@ -66,6 +66,7 @@
 \setbeamercolor{title}{fg=black}
 \setbeamercolor{frametitle}{fg=black}
 \setbeamercolor{description item}{fg=black}
+\setbeamercolor{enumerate item}{fg=black}
 \setbeamercolor{itemize item}{fg=black}
 \setbeamercolor{bibliography entry author}{fg=black}
 \setbeamercolor{bibliography entry title}{fg=black}
@@ -338,6 +339,111 @@ Professorenkatalogs infrastructure consists of several web applications (Present
 	\caption{Virtuoso SPARQL Endpoint provided by a docker container}
 	
 	\end{figure}
+}
+
+\frame{
+
+	\frametitle{Dockerizing Linked Data}
+	
+	Wants to improve setup of linked data environments and make the replacement of components more easier 
+	\vspace{\baselineskip}
+	
+	\centerline{through $\downarrow$} 
+	\vspace{\baselineskip}
+
+	\centering{Applying \textbf{micro service architecture} with Docker}
+
+}
+
+\frame{
+
+	\frametitle{Dockerizing Linked Data}
+	\framesubtitle{Containerised Knowledge Base}
+	
+	\begin{figure}
+	
+	\includegraphics[scale=0.33]{dockerizing-container.png}
+	\caption{Architecture and data-flow of the containerized micro services\cite[p. 3]{dld-paper}}
+	
+	\end{figure}
+}
+
+\frame{
+
+	\frametitle{Dockerizing Linked Data}
+	\framesubtitle{Docker Compose}
+	
+	Dockerizing application sits on top of Docker Compose
+	\vspace{\baselineskip}
+		
+	Docker Compose:
+	
+	\begin{itemize}
+  		\item Tool for defining and running \textbf{multi-container} applications
+		\item Define a multi-container application in a single file
+	\end{itemize}
+	
+}
+
+\frame{
+
+	\frametitle{Dockerizing Linked Data}
+	\framesubtitle{Docker Compose how it works}
+	
+	\begin{enumerate}
+	
+		\item Write some Dockerfiles for reproducing your images
+		\item Define the services that make up your app in \textbf{docker-compose.yml}
+		\item Run \colorbox{background}{\lstinline{docker-compose up}} and Compose will start and run all services
+	
+	\end{enumerate}
+	
+}
+
+\frame[allowframebreaks]{
+
+	\frametitle{Dockerizing Linked Data}
+	\framesubtitle{docker-compose.yml file}
+	
+	\begin{small}
+	\begin{lstlisting}[caption=Compose file example from Docker]
+		web:
+ 		    build: .
+  		    ports:
+   			- "5000:5000"
+  		    volumes:
+  		    	- .:/code
+  		    links:
+   		   	- redis
+		redis:
+ 		    image: redis
+	\end{lstlisting}
+	\end{small}
+}
+
+\frame[allowframebreaks]{
+
+	\frametitle{Dockerizing Linked Data}
+	
+	Previous example is equal to following docker commands:
+	\vspace{\baselineskip}
+
+	\begin{small}
+	\begin{lstlisting}
+		docker run --name="redis" redis
+		
+		docker build -t web .
+		docker run --link="redis" -p 5000:5000 -v .:/code --name="web" web
+	\end{lstlisting}
+	\end{small}	
+}
+
+\frame{
+
+	\frametitle{Dockerizing Linked Data}
+	\framesubtitle{Linking}
+	
+	Compose connects containers and shares volumes, IP adresses or environment variables to multiple containers with the \colorbox{background}{\lstinline{link}} or \colorbox{background}{\lstinline{volumes_from}} tag
 }
 
 \frame {
