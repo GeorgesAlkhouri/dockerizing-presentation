@@ -446,6 +446,39 @@ Professorenkatalogs infrastructure consists of several web applications (Present
 	Compose connects containers and shares volumes, IP adresses or environment variables to multiple containers with the \colorbox{background}{\lstinline{link}} or \colorbox{background}{\lstinline{volumes_from}} tag
 }
 
+\frame{
+	\frametitle{Demo Dockerizing}
+	\framesubtitle{Services}
+	There are 4 kinds of services in the setup area of Dockerizing composer files:
+	\newline
+	\textbf{store} 
+	\begin{itemize}
+		\item the store service defines a Triple Store
+		\item needs an image (e.g. aksw/dld-store-virtuoso7)
+		\item needs a volume for persistent data storage
+	\end{itemize}
+	\textbf{load}
+	\begin{itemize}
+		\item the load service defines a load image (e.g. aksw/dld-store-virtuoso7)
+		\item it is needed to load data into the store
+	\end{itemize}	
+}
+
+\frame{
+	\frametitle{Demo Dockerizing}
+	\framesubtitle{Services}
+	\textbf{backup}
+	\begin{itemize}
+		\item defines a backup component (e.g. aksw/dld-backup-virtuoso)
+		\item this component should be used for a backup of the Triple Store data 
+	\end{itemize}
+	\textbf{present}
+	\begin{itemize}
+		\item defines one or more presentation images (e.g. aksw/dld-present-ontowiki)
+		\item the component is used to explore the Triple Store data
+	\end{itemize}
+}
+
 \frame {
 	\frametitle{References}
 
