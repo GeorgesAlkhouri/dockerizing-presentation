@@ -131,7 +131,7 @@ Professorenkatalogs infrastructure consists of several web applications (Present
 	Docker is a free virtualisation technology, which is based on Linux Containers.
 	\begin{figure}
 		\includegraphics[scale=0.4]{vm-vs-docker.png}
-		\caption{Virtual Machines vs Docker}
+		\caption{Virtual Machines vs Docker \cite{docker-doc}}
 		%Quelle: : http://www.theregister.co.uk/2015/01/07/asigra_dockerises_cloud_backup/
 	\end{figure}
 }
@@ -151,7 +151,7 @@ Professorenkatalogs infrastructure consists of several web applications (Present
 	\framesubtitle{Docker's architecture}
 	\begin{figure}
 		\includegraphics[scale=0.5]{docker-architecture.png}
-		\caption{Architecture of Docker}
+		\caption{Architecture of Docker \cite{docker-doc}}
 		%Quelle: : https://docs.docker.com/introduction/understanding-docker/
 	\end{figure}
 }
@@ -567,7 +567,7 @@ Professorenkatalogs infrastructure consists of several web applications (Present
 }
 
 \frame{
-	\frametitle{Demo Dockerizing}
+	\frametitle{Dockerizing Linked Data}
 	\framesubtitle{Services}
 	There are 4 kinds of services in the setup area of Dockerizing composer files:
 	\newline
@@ -585,7 +585,7 @@ Professorenkatalogs infrastructure consists of several web applications (Present
 }
 
 \frame{
-	\frametitle{Demo Dockerizing}
+	\frametitle{Dockerizing Linked Data}
 	\framesubtitle{Services}
 	\textbf{backup}
 	\begin{itemize}
@@ -601,7 +601,18 @@ Professorenkatalogs infrastructure consists of several web applications (Present
 
 \frame{
 	\frametitle{Summary}
+	The projects result is a collection of Dockerfiles / images  and packages. The collection is consisting of semantic web images (e.g. Virtuoso7) and utility images (e.g. backup).
 	
+	\textbf{Advanteges}
+	\begin{itemize}
+		\item docker images are simple to ship, use and modify
+		\item many ready to use images on Docker Hub
+		\item multi container applications
+	\end{itemize}
+	\textbf{Disadvantege}
+	\begin{itemize}
+		\item security doubts (http://www.golem.de/news/studie-docker-images-oft-mit-sicherheitsluecken-1505-114310.html)
+	\end{itemize}
 }
 
 \frame {
@@ -612,6 +623,10 @@ Professorenkatalogs infrastructure consists of several web applications (Present
       		\bibitem[1]{dld-paper}
         	Knowledge Base Shipping to the Linked Open Data Cloud
  		\newblock {\em Natanael Arndt, Markus Ackermann, Martin Brümmer, Thomas Riechert}
+		\newblock{Jul. 2015}
+		\bibitem[2]{docker-doc}
+        	Docker documentation
+ 		\newblock {\em https://docs.docker.com/}
 		\newblock{Jul. 2015}
 \end{thebibliography}
 
