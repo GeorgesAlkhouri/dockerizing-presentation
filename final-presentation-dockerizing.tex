@@ -172,8 +172,17 @@ Professorenkatalogs infrastructure consists of several web applications (Present
 		\item Docker consists of two components: \textbf{Docker Engine, Docker Hub}
 		\item \textbf{Docker Engine} is managing the containers and deploys the applications on them 
 		\item \textbf{Docker Hub} is a Docker repository to ship and run your applications anywhere
-		\item 
 	\end{itemize}
+}
+
+\frame{
+	\frametitle{What is Docker?}
+	\framesubtitle{Docker's architecture}
+	\begin{figure}
+		\includegraphics[scale=0.5]{docker-architecture.png}
+		\caption{Architecture of Docker}
+		%Quelle: : https://docs.docker.com/introduction/understanding-docker/
+	\end{figure}
 }
 
 \frame{
@@ -211,13 +220,10 @@ Professorenkatalogs infrastructure consists of several web applications (Present
 \setbeamertemplate{frametitle continuation}{}
 \frame[allowframebreaks]{
 	\frametitle{Docker example: Virtuoso 7}
-	\framesubtitle{Dockerfile}
 	\begin{tiny}
-	\begin{lstlisting}
+	\begin{lstlisting}[caption=Vituoso 7 Dockerfile]
 	FROM debian:jessie
 	MAINTAINER Natanael Arndt ...
-	LABEL org.aksw.dld=true ...
-	# Let the conatiner know that there is no tty
 	ENV DEBIAN_FRONTEND noninteractive
 	RUN apt-get update
 	# install some basic packages
@@ -237,11 +243,9 @@ Professorenkatalogs infrastructure consists of several web applications (Present
 	VOLUME "/var/lib/virtuoso/db"
 	VOLUME "/import_store"
 	WORKDIR /var/lib/virtuoso/db
-	
 	CMD ["/run.sh"] 
 	\end{lstlisting}
-	\end{tiny}
-	
+	\end{tiny}	
 }
 
 \frame{
@@ -525,7 +529,7 @@ Professorenkatalogs infrastructure consists of several web applications (Present
 	\end{itemize}
 	\textbf{load}
 	\begin{itemize}
-		\item the load service defines a load image (e.g. aksw/dld-store-virtuoso7)
+		\item the load service defines a load image (e.g. aksw/dld-load-virtuosoload)
 		\item it is needed to load data into the store
 	\end{itemize}	
 }
@@ -543,6 +547,11 @@ Professorenkatalogs infrastructure consists of several web applications (Present
 		\item defines one or more presentation images (e.g. aksw/dld-present-ontowiki)
 		\item the component is used to explore the Triple Store data
 	\end{itemize}
+}
+
+\frame{
+	\frametitle{Summary}
+	
 }
 
 \frame {
