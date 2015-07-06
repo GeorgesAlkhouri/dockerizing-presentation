@@ -342,6 +342,72 @@ Professorenkatalogs infrastructure consists of several web applications (Present
 }
 
 \frame{
+	\frametitle{Multiple Containers}
+	\framesubtitle{Communication}
+
+	\begin{center}
+	
+	Containers can connect and expose information with each other
+	
+	\end{center}
+
+}
+
+\frame{
+	\frametitle{Multiple Containers}
+	\framesubtitle{Communication Approaches}
+	
+	\textbf{Network port mapping}
+	\begin{itemize}
+	
+	\item[] Maps a port inside the container to a port on the host (\colorbox{background}{\lstinline{docker run ... -p 8890:8890 ...}})
+	
+	\end{itemize}
+	
+	\textbf{Linking System}
+	\begin{itemize}
+	
+	\item[] Source containers information can be sent to a recipient container by naming the source 
+	\item[] \colorbox{background}{\lstinline{docker run --name="db" ...}}
+	\item[] and linking it to a recipient
+	\item[] \colorbox{background}{\lstinline{docker run --link="db" ...  webserver}}
+	\end{itemize}
+}
+
+\frame{
+	\frametitle{Multiple Containers}
+	\framesubtitle{Linking System - Shared Information}
+	
+	\textbf{Environment variables}
+	\begin{itemize}
+		\item[] Docker creates Environment variables in target container
+		\begin{itemize}
+			\item[] ...
+			\item[] DB\_NAME=db
+			\item[] DB\_PORT=tcp://172.17.0.5:5432
+			\item[] DB\_PORT\_5432\_TCP=tcp://172.17.0.5:5432
+			\item[] DB\_PORT\_5432\_PROTO=tcp
+			\item[] DB\_PORT\_5432\_PORT=5432
+			\item[] DB\_PORT\_5432\_ADDR=172.17.0.5
+			\item[] ...
+		\end{itemize} 
+	\end{itemize}
+	
+}
+
+\frame{
+	\frametitle{Multiple Containers}
+	\framesubtitle{Linking System - Shared Information}
+	
+	\textbf{Updating the /etc/hosts file}
+	\begin{itemize}
+		\item[] Docker adds a host entry for the source container
+		\item[] Automatically updates  hosts file with new IP when source container restarts
+	\end{itemize}
+}
+
+
+\frame{
 
 	\frametitle{Dockerizing Linked Data}
 	
