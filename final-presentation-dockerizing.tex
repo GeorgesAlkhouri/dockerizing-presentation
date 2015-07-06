@@ -46,10 +46,6 @@
 \setbeamercolor{caption name}{fg=black}
 
 \setbeamertemplate{itemize items}[circle]
-%\setbeamertemplate{caption}{
-%\begin{beamercolorbox}[wd=.5\paperwidth, sep=.2ex]{block body}\insertcaption
-%\end{beamercolorbox}
-%}
 
 \addtobeamertemplate{frametitle}{\vskip+5.0ex}
 
@@ -70,20 +66,20 @@
 
 \frametitle{Problem}
 
-Populare knowledge bases faceing \textbf{performence/availability} issues through \textbf{high request} rates
+Populare knowledge bases faceing \textbf{performence/availability} issues through \textbf{high request} rates.
 \vspace{\baselineskip}
 
 \centerline{Solution $\downarrow$} 
 
 \vspace{\baselineskip}
-Run a local mirror of the knowledge base with a SPARQL endpoint
+Run a local mirror of the knowledge base with a SPARQL endpoint.
 }
 
 \frame{
 
 \frametitle{New Problem}
 
-To run and maintain a local knowledge base environment is a complex task requiring a lot of effort and is not suitable for domain admins who just want to use the SPARQL interface
+To run and maintain a local knowledge base environment is a complex task requiring a lot of effort and is not suitable for domain admins who just want to use the SPARQL interface.
 \vspace{\baselineskip}
 
 \centerline{New Solution $\downarrow$} 
@@ -113,7 +109,7 @@ The Catalogus Professorum Lipsiensium
 \frametitle{Usage Example: Professorenkatalog}
 \framesubtitle{Infrastructure}
 
-Professorenkatalogs infrastructure consists of several web applications (Presentation, Storage, Backup, ... )
+Professorenkatalogs infrastructure consists of several web applications (Presentation, Storage, Backup, ... ).
 
 }
 
@@ -148,7 +144,7 @@ Professorenkatalogs infrastructure consists of several web applications (Present
 
 \frame{
 	\frametitle{What is Docker?}
-	\framesubtitle{Docker's architecture}
+	\framesubtitle{Docker's Architecture}
 	\begin{figure}
 		\includegraphics[scale=0.5]{docker-architecture.png}
 		\caption{Architecture of Docker \cite{docker-doc}}
@@ -160,9 +156,9 @@ Professorenkatalogs infrastructure consists of several web applications (Present
 	\frametitle{What is Docker?}
 	\framesubtitle{Usage}
 	\begin{enumerate}
-		\item Install Docker.
-		\item Pull (and modify) a Docker image from the Docker Hub or create a Dockerfile.
-		\item Run a container by using the Docker image.
+		\item Install Docker
+		\item Pull (and modify) a Docker image from the Docker Hub or create a Dockerfile
+		\item Run a container by using the Docker image
 	\end{enumerate}
 }
 
@@ -171,7 +167,7 @@ Professorenkatalogs infrastructure consists of several web applications (Present
 
 \frame{
 	\frametitle{What is Docker?}
-	\framesubtitle{Basic commands}
+	\framesubtitle{Basic Commands}
 	docker ...
 	\begin{description}
 	\item[build] \textit{dockerfile}: build an image from a Dockerfile
@@ -184,7 +180,7 @@ Professorenkatalogs infrastructure consists of several web applications (Present
 }
 
 \frame{
-	\frametitle{Docker example: Virtuoso 7}
+	\frametitle{Docker Example: Virtuoso 7}
 	Virtuoso is a SQL-ORDBMS and Web Application Server (Universal Server). The Server provides SQL, XML, RDF data mangement. Access to the Triple Store is available in many ways, for example via SPARQL, ODBC, JDBC. %(Quelle: https://www.w3.org/2001/sw/wiki/OpenLink_Virtuoso)
 }
 
@@ -282,10 +278,10 @@ Professorenkatalogs infrastructure consists of several web applications (Present
 	\frametitle{Simple Docker Demo}
 	\framesubtitle{Setup Virtuoso}
 
-	The virtuoso.ini file is injected into the container through \colorbox{background}{\lstinline{-v}} which mounts the datebase folder from the host system into the container
+	The virtuoso.ini file is injected into the container through \colorbox{background}{\lstinline{-v}} which mounts the datebase folder from the host system into the container.
 	\vspace{\baselineskip}
 	
-	If not specified the container provides a fallback file
+	If not specified the container provides a fallback file.
 
 }
 
@@ -295,7 +291,7 @@ Professorenkatalogs infrastructure consists of several web applications (Present
 	\frametitle{Simple Docker Demo}
 	\framesubtitle{Access Virtuoso Container}
 
-	After \colorbox{background}{\lstinline{docker run}} docker provides an access to the container through the exposed port (\colorbox{background}{\lstinline{-p 8890:8890}}) on localhost
+	After \colorbox{background}{\lstinline{docker run}} docker provides an access to the container through the exposed port (\colorbox{background}{\lstinline{-p 8890:8890}}) on localhost.
 	
 	\begin{center}
 		\url{http://localhost:8890/sparql}
@@ -319,7 +315,7 @@ Professorenkatalogs infrastructure consists of several web applications (Present
 
 	\begin{center}
 	
-	Containers can connect and expose information with each other
+	Containers can connect and expose information with each other they are not necessarily isolated.
 	
 	\end{center}
 
@@ -332,7 +328,7 @@ Professorenkatalogs infrastructure consists of several web applications (Present
 	\textbf{Network port mapping}
 	\begin{itemize}
 	
-	\item[] Maps a port inside the container to a port on the host (\colorbox{background}{\lstinline{docker run ... -p 8890:8890 ...}})
+	\item[] Maps a port inside the container to a port on the host (\colorbox{background}{\lstinline{docker run ... -p 8890:8890 ...}}).
 	
 	\end{itemize}
 	
@@ -342,7 +338,7 @@ Professorenkatalogs infrastructure consists of several web applications (Present
 	\item[] Source containers information can be sent to a recipient container by naming the source 
 	\item[] \colorbox{background}{\lstinline{docker run --name="db" ...}}
 	\item[] and linking it to a recipient
-	\item[] \colorbox{background}{\lstinline{docker run --link="db" ...  webserver}}
+	\item[] \colorbox{background}{\lstinline{docker run --link="db" ...  webserver}}.
 	\end{itemize}
 }
 
@@ -352,7 +348,7 @@ Professorenkatalogs infrastructure consists of several web applications (Present
 	
 	\textbf{Environment variables}
 	\begin{itemize}
-		\item[] Docker creates Environment variables in target container
+		\item[] Docker creates Environment variables in the target container,
 		\begin{itemize}
 			\item[] ...
 			\item[] DB\_NAME=db
@@ -383,7 +379,7 @@ Professorenkatalogs infrastructure consists of several web applications (Present
 
 	\frametitle{Dockerizing Linked Data}
 	
-	The Project wants to improve the setup of linked data environments and make the replacement of components more easier 
+	The Project wants to improve the setup of linked data environments and make the replacement of components more easier.
 	\vspace{\baselineskip}
 	
 	\centerline{through $\downarrow$} 
@@ -411,7 +407,7 @@ Professorenkatalogs infrastructure consists of several web applications (Present
 	\frametitle{Dockerizing Linked Data}
 	\framesubtitle{Docker Compose}
 	
-	The Dockerizing application works with Docker Compose
+	The Dockerizing application works with Docker Compose.
 	\vspace{\baselineskip}
 		
 	Docker Compose:
@@ -479,7 +475,7 @@ Professorenkatalogs infrastructure consists of several web applications (Present
 	\frametitle{Dockerizing Linked Data}
 	\framesubtitle{Linking}
 	
-	Compose connects containers and shares volumes, IP adresses or environment variables to multiple containers with the \colorbox{background}{\lstinline{link}} or \colorbox{background}{\lstinline{volumes_from}} tag
+	Compose connects containers and shares volumes, IP adresses or environment variables to multiple containers with the \colorbox{background}{\lstinline{link}} or \colorbox{background}{\lstinline{volumes_from}} tag.
 }
 
 \frame{
