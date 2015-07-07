@@ -12,4 +12,4 @@ Working repository for the final presentation for the [Dockerizing Linked Data p
 * ~~Demo Virtuoso Docker~~
 * ~~Dockerizing (based on Professorenkatalog, What components are used/needed?)~~
 * ~~Demo Dockerizing (Maybe screen cast)~~
-* Summary
+* ~~Summary~~
